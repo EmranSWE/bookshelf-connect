@@ -50,9 +50,7 @@ export default function AllBook() {
   if (isLoading) {
     return <div>Loading......</div>;
   }
-
   const books: Book[] | undefined = data?.data?.data;
-
   return (
     <div>
       <div className="grid grid-cols-3">

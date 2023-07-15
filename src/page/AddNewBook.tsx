@@ -22,7 +22,6 @@ export default function AddNewBook() {
 
   const onSubmit: SubmitHandler<BookFormData> = (data) => {
     void postBook(data);
-    console.log(data);
   };
   if (isLoading) {
     return <div>Wait.......</div>;

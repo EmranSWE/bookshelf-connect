@@ -35,15 +35,31 @@ const bookApi = api.injectEndpoints({
         }
       },
     }),
+    singleBook: build.query({
+      query: (id) => `/books/getSingleBooks/${id}`,
+    }),
     postABook: build.mutation({
       query: (data) => ({
         url: `/books/create-book`,
         method: "POST",
         body: data,
       }),
+
       // invalidatesTags: ["books"],
+    }),
+    updateABook: build.mutation({
+      query: ({ id, data }) => ({
+        url: `/books/updateSingleBooks/${id}`,
+        method: "POST",
+        body: data,
+      }),
     }),
   }),
 });
 
-export const { useGetAllBooksQuery, usePostABookMutation } = bookApi;
+export const {
+  useGetAllBooksQuery,
+  usePostABookMutation,
+  useSingleBookQuery,
+  useUpdateABookMutation,
+} = bookApi;

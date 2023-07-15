@@ -11,6 +11,8 @@ import Signup from "../page/Signup";
 import AllBooksMain from "../page/AllBookMain";
 import AllBook from "../page/AllBook";
 import AddNewBook from "../page/AddNewBook";
+import DeleteBook from "../components/ui/DeleteBook";
+import EditBook from "../components/ui/EditBook";
 
 const routes = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ const routes = createBrowserRouter([
       {
         path: "/add-new-book",
         element: <AddNewBook />,
+      },
+      {
+        path: "/edit-book/:id",
+        element: <EditBook />,
+      },
+      {
+        path: "/delete-book",
+        element: <DeleteBook />,
       },
       //   {
       //     path: "/checkout",
