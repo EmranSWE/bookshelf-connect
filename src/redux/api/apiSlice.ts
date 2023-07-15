@@ -4,6 +4,10 @@ export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000/api/v1",
+    headers: {
+      "Content-Type": "application/json",
+    },
   }),
+
   endpoints: () => ({}),
 });

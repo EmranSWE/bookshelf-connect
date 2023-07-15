@@ -46,6 +46,14 @@ const Navbar = () => {
           )}
           {user.email && (
             <>
+              <li>
+                <Link
+                  to="/add-new-book"
+                  className="text-white hover:text-gray-300 transition duration-300"
+                >
+                  Add New Book
+                </Link>
+              </li>
               <Link
                 to=""
                 onClick={handleLogOut}

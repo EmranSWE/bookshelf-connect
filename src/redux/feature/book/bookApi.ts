@@ -35,7 +35,15 @@ const bookApi = api.injectEndpoints({
         }
       },
     }),
+    postABook: build.mutation({
+      query: (data) => ({
+        url: `/books/create-book`,
+        method: "POST",
+        body: data,
+      }),
+      // invalidatesTags: ["books"],
+    }),
   }),
 });
 
-export const { useGetAllBooksQuery } = bookApi;
+export const { useGetAllBooksQuery, usePostABookMutation } = bookApi;

@@ -5,6 +5,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useGetAllBooksQuery } from "../redux/feature/book/bookApi";
 import Books from "./Books";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 interface SearchFormValues {
   searchTerm: string;
 }
@@ -74,7 +75,6 @@ export default function AllBook() {
                 Search
               </button>
             </form>
-
             <form
               onSubmit={handleSubmit(handleFilterSubmit)}
               className="flex items-center space-x-4"
@@ -102,6 +102,9 @@ export default function AllBook() {
                 Filter
               </button>
             </form>
+            <Link to="/add-new-book">
+              <button>Add New</button>
+            </Link>
           </div>
         </div>
         <div className="grid  lg:col-span-2 md:grid-cols-2 lg:grid-cols-3 gap-4">

@@ -10,6 +10,7 @@ import Signup from "../page/Signup";
 
 import AllBooksMain from "../page/AllBookMain";
 import AllBook from "../page/AllBook";
+import AddNewBook from "../page/AddNewBook";
 
 const routes = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const routes = createBrowserRouter([
             element: <AllBook />,
           },
         ],
+      },
+      {
+        path: "/add-new-book",
+        element: <AddNewBook />,
       },
       //   {
       //     path: "/checkout",
