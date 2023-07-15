@@ -8,6 +8,9 @@ import Login from "../page/Login";
 import NotFound from "../page/NotFound";
 import Signup from "../page/Signup";
 
+import AllBooksMain from "../page/AllBookMain";
+import AllBook from "../page/AllBook";
+
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -19,13 +22,21 @@ const routes = createBrowserRouter([
       },
       {
         path: "/books",
-        element: (
-          <Books title={""} author={""} genre={""} publicationDate={""} />
-        ),
+        element: <Books title={""} author={""} genre={""} />,
       },
       {
         path: "/book-details/:id",
         element: <BookDetails />,
+      },
+      {
+        path: "/all-books",
+        element: <AllBooksMain />,
+        children: [
+          {
+            index: true,
+            element: <AllBook />,
+          },
+        ],
       },
       //   {
       //     path: "/checkout",
@@ -37,6 +48,7 @@ const routes = createBrowserRouter([
       //   },
     ],
   },
+
   {
     path: "/login",
     element: <Login />,
