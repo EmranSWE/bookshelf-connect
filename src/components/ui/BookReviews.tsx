@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-misused-promises */
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { FiSend } from "react-icons/fi";
 import {
   usePostAReviewMutation,
@@ -11,21 +12,24 @@ import {
 interface IProps {
   id: string;
 }
+
+type IBookFormData = {
+  review: any;
+};
 export default function BookReviews({ id }: IProps) {
-  const { register, handleSubmit, reset } = useForm();
-  const [postReview, { isLoading: loading, isError, isSuccess }] =
-    usePostAReviewMutation();
+  const { register, handleSubmit, reset } = useForm<IBookFormData>();
+  const [postReview, { isLoading: loading }] = usePostAReviewMutation();
 
   const { data, isLoading } = useSingleReviewQuery(id, {
     refetchOnMountOrArgChange: true,
     pollingInterval: 20000,
   });
-  if (isLoading) {
+  if (isLoading || loading) {
     return <div>Loading...........</div>;
   }
 
   const reviews = data?.data.reviews;
-  const onSubmit = (data: { review: any }) => {
+  const onSubmit: SubmitHandler<IBookFormData> = (data: { review: any }) => {
     const options = {
       id: id,
       data: { review: data.review },
@@ -48,7 +52,7 @@ export default function BookReviews({ id }: IProps) {
         </button>
       </form>
       <div className="mt-10">
-        {reviews.map((review, index) => (
+        {reviews.map((review: string, index: number) => (
           <div key={index} className="flex gap-3 items-center mb-5">
             <p>{review}</p>
           </div>
