@@ -1,11 +1,11 @@
 import { useState } from "react";
 
-const SearchForm = ({ onSearch }) => {
+const SearchForm = ({ onSearch }: any) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedGenre, setSelectedGenre] = useState("");
   const [selectedYear, setSelectedYear] = useState("");
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: { preventDefault: () => void }) => {
     e.preventDefault();
     // Call the onSearch callback with the search criteria
     onSearch({

@@ -2,10 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 type BooksProps = {
+  _id: string;
   title: string;
   author: string;
   genre: string;
-  pub_date: Date;
+  pub_date: string;
 };
 
 const Books: React.FC<BooksProps> = ({

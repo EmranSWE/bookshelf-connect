@@ -12,8 +12,7 @@ interface BookFormData {
   pub_date: string;
 }
 export default function AddNewBook() {
-  const [postBook, { isLoading, isError, data, error }] =
-    usePostABookMutation();
+  const [postBook, { isLoading, data }] = usePostABookMutation();
   const {
     register,
     handleSubmit,
@@ -29,9 +28,9 @@ export default function AddNewBook() {
   if (data) {
     toast.success("✅✅You added a book successfully");
   }
-  if (error?.data?.message) {
-    toast.warning("⚠️Your Book Doesn't Added Successfully");
-  }
+  // if (error?.data?.message) {
+  //   toast.warning("⚠️Your Book Doesn't Added Successfully");
+  // }
   return (
     <>
       <div className="max-w-md mx-auto">
@@ -108,7 +107,7 @@ export default function AddNewBook() {
             Add Book
           </button>
         </form>
-        <h1 className="text-red-500">{error?.data?.message}</h1>
+        {/* <h1 className="text-red-500">{error?.data?.message}</h1> */}
       </div>
     </>
   );

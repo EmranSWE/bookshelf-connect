@@ -1,14 +1,11 @@
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 import { useGetAllBooksQuery } from "../redux/feature/book/bookApi";
 import Books from "./Books";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-interface SearchFormValues {
-  searchTerm: string;
-}
 
 interface FilterFormValues {
   genre: string;
@@ -20,16 +17,18 @@ type Book = {
   genre: string;
   pub_date: Date;
 };
+
+type MySubmitHandler = SubmitHandler<{ searchTerm: string }>;
 export default function AllBook() {
-  const { register, handleSubmit } = useForm<SearchFormValues>();
+  const { register, handleSubmit } = useForm();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [genreQuery, setGenreQuery] = useState("");
   const [pubDateQuery, setPubDateQuery] = useState("");
-  console.log(genreQuery);
-  const handleSearchSubmit: SubmitHandler<SearchFormValues> = (data) => {
+
+  const handleSearchSubmit = (data: { searchTerm: string }) => {
     setSearchQuery(data.searchTerm);
-  };
+  } as SubmitHandler<FieldValues>; 
   const handleFilterSubmit: SubmitHandler<FilterFormValues> = (data) => {
     setGenreQuery(data.genre);
     setPubDateQuery(data.publicationYear);

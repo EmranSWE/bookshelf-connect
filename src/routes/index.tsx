@@ -25,7 +25,9 @@ const routes = createBrowserRouter([
       },
       {
         path: "/books",
-        element: <Books title={""} author={""} genre={""} />,
+        element: (
+          <Books title={""} author={""} genre={""} pub_date={""} _id={""} />
+        ),
       },
       {
         path: "/book-details/:id",

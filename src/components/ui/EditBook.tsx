@@ -1,26 +1,21 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React from "react";
 import { useParams } from "react-router-dom";
 import {
   useSingleBookQuery,
   useUpdateABookMutation,
 } from "../../redux/feature/book/bookApi";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
 export default function EditBook() {
   const { id } = useParams();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  const { register, handleSubmit, setValue } = useForm();
 
   const { data: book, isLoading: isLoadingData } = useSingleBookQuery(id);
-  const [postBook, { isLoading, isError, data, error }] =
-    useUpdateABookMutation();
-
-  const onSubmit = (data) => {
+  const [postBook, { isLoading, data, error }] = useUpdateABookMutation();
+  console.log(isLoading);
+  const onSubmit = (data: any) => {
     const options = {
       id: id,
       data: data,
@@ -43,9 +38,9 @@ export default function EditBook() {
     if (data) {
       toast.success("✅✅You added a book successfully");
     }
-    if (error?.data?.message) {
-      toast.warning("⚠️Your Book Didn't Add Successfully");
-    }
+    // if (error?.data?.message) {
+    //   toast.warning("⚠️Your Book Didn't Add Successfully");
+    // }
   }, [data, error]);
 
   if (isLoadingData) {
