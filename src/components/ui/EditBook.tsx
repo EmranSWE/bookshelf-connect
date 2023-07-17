@@ -14,14 +14,14 @@ export default function EditBook() {
 
   const { data: book, isLoading: isLoadingData } = useSingleBookQuery(id);
   const [postBook, { isLoading, data, error }] = useUpdateABookMutation();
-  console.log(isLoading);
   const onSubmit = (data: any) => {
     const options = {
       id: id,
       data: data,
     };
-    console.log(options);
-    void postBook(data);
+
+    void postBook(options);
+    resizeTo();
   };
 
   React.useEffect(() => {

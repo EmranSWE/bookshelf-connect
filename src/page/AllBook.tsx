@@ -31,7 +31,7 @@ export default function AllBook() {
   };
 
   const { isLoading, data, refetch } = useGetAllBooksQuery({
-    limit: 10,
+    limit: 30,
     page: 1,
     searchTerm: searchQuery,
     genre: genreQuery,

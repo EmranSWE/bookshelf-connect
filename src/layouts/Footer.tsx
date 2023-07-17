@@ -1,14 +1,16 @@
 import { RiFacebookBoxFill, RiInstagramLine } from "react-icons/ri";
-
+import logo from "../assets/logo.png";
 const Footer = () => {
   const date = new Date();
   const year = date.getFullYear();
 
   return (
-    <div className="bg-white text-secondary py-8 md:py-16 lg:py-20">
+    <div className="bg-white text-secondary py-8 md:py-16 ">
       <div className="grid grid-cols-1 md:grid-cols-3 justify-between items-center mx-4 md:mx-auto max-w-6xl">
         {/* Logo */}
-        <div>{/* <img className="h-10" src={logo} alt="Logo" /> */}</div>
+        <div>
+          <img className="h-40" src={logo} alt="Logo" />
+        </div>
 
         {/* Navigation */}
         <div className="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-20 mt-8 md:mt-0">
@@ -38,7 +40,7 @@ const Footer = () => {
       <div className="flex flex-wrap justify-center items-center mt-8">
         <p className="mb-4 md:mr-8">Privacy Policy</p>
         <p className="mb-4 md:mr-8">Terms & Conditions</p>
-        <p>&copy; TechNet {year}</p>
+        <p>&copy; BookShelf-connect {year}</p>
       </div>
     </div>
   );

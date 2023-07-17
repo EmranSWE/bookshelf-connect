@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useForm, SubmitHandler } from "react-hook-form";
 import { usePostABookMutation } from "../redux/feature/book/bookApi";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 interface BookFormData {
   title: string;
@@ -11,26 +13,31 @@ interface BookFormData {
   genre: string;
   pub_date: string;
 }
+
 export default function AddNewBook() {
-  const [postBook, { isLoading, data }] = usePostABookMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<BookFormData>();
-
+  const [postBook, { isLoading, data, isError }] = usePostABookMutation();
   const onSubmit: SubmitHandler<BookFormData> = (data) => {
     void postBook(data);
+    reset();
   };
   if (isLoading) {
     return <div>Wait.......</div>;
   }
+
   if (data) {
     toast.success("✅✅You added a book successfully");
   }
-  // if (error?.data?.message) {
-  //   toast.warning("⚠️Your Book Doesn't Added Successfully");
-  // }
+
+  if (isError) {
+    toast.warning("⚠️Your Book Doesn't Added Successfully");
+  }
+
   return (
     <>
       <div className="max-w-md mx-auto">
@@ -90,7 +97,7 @@ export default function AddNewBook() {
               Publication Date
             </label>
             <input
-              type="date"
+              type="text"
               id="pub_date"
               {...register("pub_date", { required: true })}
               className="mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
@@ -107,7 +114,7 @@ export default function AddNewBook() {
             Add Book
           </button>
         </form>
-        {/* <h1 className="text-red-500">{error?.data?.message}</h1> */}
+        <h1 className="text-red-500">{isError ? "Data doesn't added" : ""}</h1>
       </div>
     </>
   );

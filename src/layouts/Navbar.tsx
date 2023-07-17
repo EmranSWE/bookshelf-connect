@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../lib/firebase";
 import { setUser } from "../redux/feature/user/userSlice";
 import { Link } from "react-router-dom";
+import logo from "../assets/logo_transparent.png";
 const Navbar = () => {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
@@ -13,7 +14,12 @@ const Navbar = () => {
   return (
     <nav className="bg-gray-800 py-4">
       <div className="container mx-auto flex items-center justify-between">
-        <div className="text-white font-bold text-xl">Book Catalog</div>
+        <div className="text-white font-bold text-xl">
+          <Link to="/">
+            {" "}
+            <img className="h-14" src={logo} alt="" />{" "}
+          </Link>
+        </div>
         <ul className="flex space-x-4">
           <li>
             <Link
