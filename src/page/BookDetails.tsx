@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable no-unsafe-optional-chaining */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Link, Params, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSingleBookQuery } from "../redux/feature/book/bookApi";
 import BookReviews from "../components/ui/BookReviews";
 
@@ -13,7 +13,7 @@ interface IBook {
   pub_date: string;
 }
 export default function BookDetails() {
-  const { id }: Readonly<Params<string>> = useParams();
+  const { id } = useParams();
   const { data, isLoading } = useSingleBookQuery(id);
   if (isLoading) {
     return <div>Loading...........</div>;

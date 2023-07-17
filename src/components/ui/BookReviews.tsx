@@ -9,14 +9,14 @@ import {
   usePostAReviewMutation,
   useSingleReviewQuery,
 } from "../../redux/feature/book/bookApi";
-interface IProps {
-  id: string;
-}
 
 type IBookFormData = {
   review: any;
 };
-export default function BookReviews({ id }: IProps) {
+interface Props {
+  id: string | undefined;
+}
+export default function BookReviews({ id }: Props) {
   const { register, handleSubmit, reset } = useForm<IBookFormData>();
   const [postReview, { isLoading: loading }] = usePostAReviewMutation();
 
