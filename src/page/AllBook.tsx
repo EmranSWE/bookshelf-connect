@@ -7,14 +7,7 @@ import { useGetAllBooksQuery } from "../redux/feature/book/bookApi";
 import Books from "./Books";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-interface SearchFormValues {
-  searchTerm: string;
-}
 
-interface FilterFormValues {
-  genre: string;
-  publicationYear: string;
-}
 type Book = {
   _id: string;
   title: string;
@@ -47,7 +40,7 @@ export default function AllBook() {
 
   useEffect(() => {
     void refetch();
-  }, [searchQuery, genreQuery, pubDateQuery]);
+  }, [searchQuery, genreQuery, pubDateQuery, refetch]);
 
   if (isLoading) {
     return <div>Loading......</div>;
