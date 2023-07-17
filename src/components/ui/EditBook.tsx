@@ -5,23 +5,30 @@ import {
   useSingleBookQuery,
   useUpdateABookMutation,
 } from "../../redux/feature/book/bookApi";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 
+type IBookEdit = {
+  title: string;
+  author: string;
+  genre: string;
+  pub_date: string;
+};
 export default function EditBook() {
   const { id } = useParams();
-  const { register, handleSubmit, setValue } = useForm();
+  const { register, handleSubmit, setValue, reset } = useForm<IBookEdit>();
 
   const { data: book, isLoading: isLoadingData } = useSingleBookQuery(id);
-  const [postBook, { isLoading, data, error }] = useUpdateABookMutation();
-  const onSubmit = (data: any) => {
+  const [postBook, { data, error }] = useUpdateABookMutation();
+
+  const onSubmit: SubmitHandler<IBookEdit> = (data: any) => {
     const options = {
       id: id,
       data: data,
     };
 
     void postBook(options);
-    resizeTo();
+    reset();
   };
 
   React.useEffect(() => {
