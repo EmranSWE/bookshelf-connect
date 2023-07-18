@@ -4,8 +4,7 @@ export const api = createApi({
   reducerPath: "api",
   tagTypes: ["books"],
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/api/v1",
-    // baseUrl: "https://bookshelf-connect-backend.vercel.app/api/v1",
+    baseUrl: "https://bookshelf-connect-backend.vercel.app/api/v1",
     headers: {
       "Content-Type": "application/json",
     },

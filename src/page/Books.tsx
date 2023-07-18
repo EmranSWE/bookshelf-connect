@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 type BooksProps = {
   _id: string;
   title: string;
@@ -22,7 +22,14 @@ const Books: React.FC<BooksProps> = ({
       <p className="text-gray-600">Author: {author}</p>
       <p className="text-gray-600">Genre: {genre}</p>
       <p className="text-gray-600">Publication Date: {pub_date}</p>
-      <Link to={`/book-details/${_id}`}>details</Link>
+      <div className="flex">
+        <Link to={`/book-details/${_id}`} className="text-2xl">
+          details
+        </Link>
+        <h2>
+          <MdOutlineShoppingCartCheckout className="bg-black-500 w-44 h-8"></MdOutlineShoppingCartCheckout>
+        </h2>
+      </div>
     </div>
   );
 };

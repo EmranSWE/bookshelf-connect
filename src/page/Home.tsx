@@ -12,6 +12,7 @@ export default function Home() {
   if (isLoading) {
     return <div>Loading......</div>;
   }
+  console.log(data);
   const book = data?.data?.data;
 
   return (
