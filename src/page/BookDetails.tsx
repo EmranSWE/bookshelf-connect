@@ -19,9 +19,9 @@ interface IBook {
 export default function BookDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [bookDelete, { data: deleteData, isSuccess }] =
+  const [bookDelete, { data: deletedUser, isSuccess }] =
     useDeleteABookMutation();
-
+  console.log(deletedUser);
   const { data, isLoading } = useSingleBookQuery(id);
   if (isLoading) {
     return <div>Loading...........</div>;
